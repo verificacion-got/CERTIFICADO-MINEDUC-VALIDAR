@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de Certificado - Ayuda Mineduc</title>
+    <title>Validación de Certificado - Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reseteo básico y estilos generales para simular móvil */
+        /* ESTILOS GENERALES */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -17,7 +17,7 @@
         }
 
         .container {
-            max-width: 480px; /* Ancho típico de móvil */
+            max-width: 480px;
             margin: 0 auto;
             background-color: #fff;
             min-height: 100vh;
@@ -25,16 +25,14 @@
             flex-direction: column;
         }
 
-        /* --- CABECERA --- */
+        /* Header */
         .header {
             padding: 15px 20px;
             background: #fff;
+            border-bottom: 1px solid #eee;
         }
 
-        .logo-text {
-            font-size: 1.5rem;
-            margin: 0;
-        }
+        .logo-text { font-size: 1.5rem; margin: 0; }
         .logo-blue { color: #0056b3; font-weight: normal; }
         .logo-red { color: #d9534f; font-weight: bold; }
 
@@ -48,124 +46,140 @@
         .section-subtitle {
             color: #0056b3;
             font-size: 1.1rem;
-            margin: 0 0 15px 0;
+            margin: 0;
             font-weight: normal;
         }
 
-        /* --- CAJAS VERDES DE ÉXITO --- */
-        .success-box, .alt-link-box {
-            background-color: #dff0d8; /* Verde claro fondo */
-            border: 1px solid #d6e9c6;
-            color: #3c763d; /* Verde oscuro texto */
-            padding: 15px;
-            margin: 0 15px 20px 15px;
-            border-radius: 4px;
-            font-size: 0.95rem;
+        /* Caja de contenido principal (gris) */
+        .login-box {
+            background-color: #f2f2f2;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center; /* Centrar contenido */
         }
 
-        .success-box a {
-            color: #0056b3;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
-        }
-
-        .instructions-text {
-            padding: 0 15px;
-            margin-bottom: 15px;
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        /* --- VISOR PDF OSCURO (PLACEHOLDER) --- */
-        .pdf-placeholder-container {
-            margin: 0 15px 20px 15px;
-            height: 450px; /* Altura fija para simular la pantalla */
-            background-color: #222222; /* Fondo gris muy oscuro */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #666;
-            position: relative;
-        }
-
-        /* Icono PDF simulado y texto getPdf */
-        .fake-pdf-icon {
-            font-size: 3rem;
-            opacity: 0.3;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .getpdf-text {
-            opacity: 0.5;
+        .login-intro {
+            font-size: 1.1rem; /* Un poco más grande como en la foto */
+            color: #777;
             margin-bottom: 25px;
-        }
-
-        /* El botón "Abrir" azul claro */
-        .btn-abrir-placeholder {
-            background-color: #8ab4f8; /* Azul claro exacto */
-            color: #222;
-            text-decoration: none;
-            padding: 12px 40px;
-            border-radius: 25px; /* Bordes muy redondeados */
-            font-weight: 500;
-            font-size: 1rem;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-align: left;
+            font-weight: 300;
         }
         
-        .btn-abrir-placeholder:hover {
-             background-color: #7aa3e8;
+        .login-intro strong {
+            font-weight: bold;
+            color: #555;
         }
 
-        /* --- CAJA INFERIOR Y BOTONES --- */
-        .alt-link-box {
-            margin-bottom: 20px;
-        }
-
-        /* Estilo para los botones azul oscuro inferiores */
-        .btn-dark-blue {
-            background-color: #004a99;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            cursor: pointer;
+        /* ESTILOS DEL FALSO RECAPTCHA */
+        .recaptcha-container {
+            background: #f9f9f9;
+            border: 1px solid #d3d3d3;
+            border-radius: 3px;
+            box-shadow: 0 0 4px 1px rgba(0,0,0,0.08);
             display: inline-flex;
             align-items: center;
-            text-decoration: none;
-        }
-        
-        .btn-dark-blue i {
-            margin-right: 8px;
-        }
-
-        /* Alineación específica del botón "Ver Copia" */
-        .alt-link-actions {
-            display: flex;
-            justify-content: flex-end; /* Alineado a la derecha */
-            margin-top: 10px;
+            justify-content: space-between;
+            padding: 10px 12px;
+            width: 300px; /* Ancho estándar de recaptcha */
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0 auto;
         }
 
-        /* Alineación específica del botón "Volver al Portal" */
-        .footer-actions {
-            padding: 0 15px 20px 15px;
+        .recaptcha-left {
             display: flex;
-            justify-content: flex-end; /* Alineado a la derecha */
+            align-items: center;
         }
-        
+
+        .recaptcha-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #c1c1c1;
+            border-radius: 2px;
+            background-color: #fff;
+            margin-right: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recaptcha-checkbox:hover {
+            border: 2px solid #b2b2b2;
+        }
+
+        .recaptcha-label {
+            font-family: Roboto, helvetica, arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #000;
+        }
+
+        .recaptcha-logo-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .recaptcha-icon {
+            width: 32px;
+            height: 32px;
+            background-image: url('https://www.gstatic.com/recaptcha/api2/logo_48.png');
+            background-size: 32px;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+        }
+
+        .recaptcha-text-small {
+            font-size: 10px;
+            color: #555;
+            text-align: center;
+            margin-top: 2px;
+            line-height: 10px;
+        }
+
+        /* Animación del Spinner */
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        /* Checkmark verde */
+        .checkmark {
+            color: #009688;
+            font-size: 20px;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
         .footer-simple-text {
             padding: 20px 15px;
             font-size: 0.9rem;
             color: #777;
             background: #f9f9f9;
-            margin-top: auto; /* Empuja el footer al final */
+            margin-top: auto;
         }
-
+        
+        .ministerio-info {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -179,44 +193,66 @@
             <h3 class="section-subtitle">Validación de Certificado</h3>
         </div>
 
-        <div class="success-box">
-            <p>El Ministerio de Educación confirma que el certificado en consulta es un documento válido y vigente.</p>
-            <a href="#">Ver más información</a>
-        </div>
+        <div class="login-box">
+            <p class="login-intro">
+                <strong>Estimado Usuario(a):</strong> Complete el desafío Recaptcha para continuar hacia la validacion del certificado.
+            </p>
 
-        <p class="instructions-text">
-            Verifique que el certificado presentado contenga la misma información que el documento que se muestra a continuación.
-        </p>
-
-        <div class="pdf-placeholder-container">
-            <div class="fake-pdf-icon">PDF</div>
-            <span class="getpdf-text">getPdf</span>
-            
-            <a href="certificadojimmy.pdf" class="btn-abrir-placeholder" target="_blank">
-                Abrir
-            </a>
-        </div>
-
-        <div class="alt-link-box">
-            <p>Si no puede ver el Certificado mas arriba, pinche aqui para abrir en una nueva ventana:</p>
-            <div class="alt-link-actions">
-                <button class="btn-dark-blue">
-                    <i class="fa-solid fa-file-lines"></i> Ver Copia
-                </button>
+            <div class="recaptcha-container">
+                <div class="recaptcha-left">
+                    <div class="recaptcha-checkbox" id="recaptchaBox" onclick="activarCaptcha()">
+                        <div class="spinner" id="recaptchaSpinner"></div>
+                        <i class="fa-solid fa-check checkmark" id="recaptchaCheck"></i>
+                    </div>
+                    <span class="recaptcha-label">No soy un robot</span>
+                </div>
+                
+                <div class="recaptcha-logo-col">
+                    <div class="recaptcha-icon"></div>
+                    <div class="recaptcha-text-small">reCAPTCHA</div>
+                    <div class="recaptcha-text-small" style="font-size: 8px;">Privacidad - Condiciones</div>
+                </div>
             </div>
         </div>
 
-        <div class="footer-actions">
-            <a href="#" class="btn-dark-blue home-btn">
-                <i class="fa-solid fa-house"></i> Volver al Portal
-            </a>
-        </div>
-        
         <div class="footer-simple-text">
-            Ministerio de Educación
+            <div class="ministerio-info">
+                <strong>Ministerio de Educación</strong><br>
+                <span style="color: #0056b3;">Gobierno de Chile</span><br>
+                Dirección: Av. Libertador Bernardo O'Higgins 1371.<br>
+                Teléfono: +56 2 24066000<br>
+                Versión 1.37.0
+            </div>
         </div>
-
     </div>
+
+    <script>
+        function activarCaptcha() {
+            var box = document.getElementById("recaptchaBox");
+            var spinner = document.getElementById("recaptchaSpinner");
+            var check = document.getElementById("recaptchaCheck");
+
+            // Evitar que se active dos veces
+            if (box.getAttribute("data-checked") === "true") return;
+
+            // 1. Mostrar spinner de carga
+            spinner.style.display = "block";
+            
+            // 2. Esperar 1 segundo (simulando conexión con Google)
+            setTimeout(function() {
+                spinner.style.display = "none";     // Ocultar spinner
+                check.style.display = "block";      // Mostrar check verde
+                box.style.border = "none";          // Quitar borde gris del cuadrado
+                box.setAttribute("data-checked", "true"); // Marcar como listo
+
+                // 3. Redirigir después de medio segundo
+                setTimeout(function() {
+                    window.location.href = "resultadomine.html";
+                }, 800);
+
+            }, 1500); // Tiempo que tarda el spinner girando
+        }
+    </script>
 
 </body>
 </html>
